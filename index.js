@@ -8,6 +8,8 @@ $(".btn").on("click", function () {
 
   console.log(userClickedPattern);
 
+  playSound(userChosenColour);
+
   nextSequence();
 });
 
@@ -19,6 +21,10 @@ function nextSequence() {
   $("#" + randomChosenColour).animate({ opacity: 0 }, 100);
   $("#" + randomChosenColour).animate({ opacity: 100 });
 
-  var audio = new Audio("sounds/" + randomChosenColour + ".mp3");
+  playSound(randomChosenColour);
+}
+
+function playSound(name) {
+  var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
