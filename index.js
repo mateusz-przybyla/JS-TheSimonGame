@@ -7,8 +7,8 @@ var lock = false;
 
 //start game
 
-$(document).keypress(function (event) {
-  if (lock === false && event.key === "a") {
+$(document).on("keypress", function () {
+  if (lock === false) {
     $("h1").text("Level " + level);
     nextSequence();
     lock = true;
