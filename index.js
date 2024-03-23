@@ -1,6 +1,5 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
-var userClickedPattern = [];
 var level = 0;
 var lock = false;
 
@@ -20,11 +19,12 @@ $(".btn").on("click", function () {
   if (lock === true) {
     var userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
+    console.log("b: " + userClickedPattern);
 
     playSound(userChosenColour);
     animatePress(userChosenColour);
 
-    nextSequence();
+    checkAnswer(userClickedPattern.length - 1);
   }
 });
 
@@ -35,6 +35,7 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
+  console.log("a: " + gamePattern);
 
   $("#" + randomChosenColour).animate({ opacity: 0 }, 100);
   $("#" + randomChosenColour).animate({ opacity: 100 });
@@ -52,4 +53,27 @@ function animatePress(currentColour) {
   setTimeout(function () {
     $("#" + currentColour).removeClass("pressed");
   }, 100);
+}
+
+function checkAnswer(currentLevel) {
+  console.log(gamePattern.length - 1);
+  console.log(currentLevel);
+
+  if (gamePattern.length - 1 === currentLevel) {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+      console.log("success99");
+      setTimeout(function () {
+        userClickedPattern.length = 0;
+        nextSequence();
+      }, 1000);
+    } else {
+      console.log("wrong99");
+    }
+  } else {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+      console.log("success");
+    } else {
+      console.log("wrong");
+    }
+  }
 }
