@@ -36,7 +36,6 @@ function checkAnswer(currentLevel) {
 
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
-        userClickedPattern.length = 0;
         nextSequence();
       }, 1000);
     }
@@ -57,6 +56,8 @@ function checkAnswer(currentLevel) {
 }
 
 function nextSequence() {
+  userClickedPattern.length = 0;
+
   level++;
   $("h1").text("Level " + level);
 
