@@ -1,5 +1,6 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
+var userClickedPattern = [];
 var level = 0;
 var lock = false;
 
@@ -59,21 +60,16 @@ function checkAnswer(currentLevel) {
   console.log(gamePattern.length - 1);
   console.log(currentLevel);
 
-  if (gamePattern.length - 1 === currentLevel) {
-    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-      console.log("success99");
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    console.log("success");
+
+    if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
         userClickedPattern.length = 0;
         nextSequence();
       }, 1000);
-    } else {
-      console.log("wrong99");
     }
   } else {
-    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-      console.log("success");
-    } else {
-      console.log("wrong");
-    }
+    console.log("wrong");
   }
 }
